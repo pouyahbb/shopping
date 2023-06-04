@@ -19,3 +19,5 @@ const menuItem = ({ title, imageUrl, size }) => {
 };
 
 export default menuItem;
+
+// video 12 section 4
