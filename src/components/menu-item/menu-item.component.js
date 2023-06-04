@@ -1,9 +1,12 @@
 import React from "react";
 import "./menu-item.styles.scss";
+import { useNavigate } from "react-router-dom";
 
-const menuItem = ({ title, imageUrl, size }) => {
+const MenuItem = ({ title, imageUrl, size, linkURL }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className={`${size} menu-item`}>
+    <div className={`${size} menu-item`} onClick={() => navigate(`${linkURL}`)}>
       <div
         style={{
           backgroundImage: `url(${imageUrl})`,
@@ -18,6 +21,4 @@ const menuItem = ({ title, imageUrl, size }) => {
   );
 };
 
-export default menuItem;
-
-// video 12 section 4
+export default MenuItem;

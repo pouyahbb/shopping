@@ -1,16 +1,14 @@
+import { Route, Routes, useNavigate } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage.component";
-import { Route, Routes } from "react-router-dom";
-
-const HatPages = () => {
-  return <h1>hats page</h1>;
-};
+import ShopComponent from "./pages/shopPage/Shop.component";
+import "./App.css";
 
 function App() {
   return (
     <div>
       <Routes>
         <Route element={<HomePage />} path="/" />
-        <Route element={<HatPages />} path="/hats" />
+        <Route element={<ShopComponent />} path="/shop" />
       </Routes>
     </div>
   );
