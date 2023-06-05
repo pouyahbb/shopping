@@ -8,6 +8,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentUser: action.payload,
       };
+    case "USER_SIGNED_OUT":
+      return {
+        ...state,
+        currentUser: null,
+      };
     default:
       return state;
   }

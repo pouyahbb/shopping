@@ -6,28 +6,28 @@ import Header from "./components/header/header.component";
 import SignInSignUp from "./pages/signin-signup/signin-signup.component";
 import "./App.css";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/user/user.actions";
 
-function App() {
-  const [currentUser, setCurrentUser] = React.useState(null);
-
+function App({ setUser }) {
   React.useEffect(() => {
     auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapshot) => {
-          setCurrentUser({
+          setUser({
             id: snapshot.id,
             ...snapshot.data(),
           });
         });
       } else {
-        setCurrentUser(userAuth);
+        setUser(userAuth);
       }
     });
   }, []);
   return (
     <div>
-      <Header currentUser={currentUser} />
+      <Header />
       <Routes>
         <Route element={<HomePage />} path="/" />
         <Route element={<ShopComponent />} path="/shop" />
@@ -37,5 +37,9 @@ function App() {
   );
 }
 
-export default App;
+const mapDispathToProps = (dispatch) => ({
+  setUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(null, mapDispathToProps)(App);
 // should look 4 in section 6
